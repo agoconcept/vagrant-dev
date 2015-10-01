@@ -74,4 +74,8 @@ Vagrant.configure(2) do |config|
   # Bootstrap
   config.vm.provision "shell", path: "bootstrap.sh"
 
+  # enable audio drivers on VM settings
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, '--audio', 'coreaudio', '--audiocontroller', 'hda'] # choices: hda sb16 ac97
+  end
 end
